@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sospeso Aurora — Refugee Resilience Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --lime: #C4D963;
+      --lime-deep: #A8BE48;
+      --dark: #1F2937;
+      --warm: #CD8B5C;
+      --warm-deep: #B57649;
+      --sand: #E8DCC8;
+      --cream: #F5EFE3;
+      --teal: #0D7A8F;
+      --text-dark: #1a1a1a;
+      --text-light: #6B7280;
+      --text-medium: #4B5563;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #fff;
+      color: var(--text-dark);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .serif {
+      font-family: 'Fraunces', Georgia, serif;
+      letter-spacing: -0.02em;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* HEADER */
+    .site-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 2rem;
+      background: #fff;
+      border-bottom: 1px solid #f0f0f0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--dark);
+      letter-spacing: -0.01em;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-main {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-main a {
+      text-decoration: none;
+      color: var(--text-medium);
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-main a:hover {
+      color: var(--dark);
+    }
+
+    .btn {
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 600;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: var(--lime);
+      color: var(--dark);
+      padding: 0.7rem 1.4rem;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .btn-primary:hover {
+      background: var(--lime-deep);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.15);
+      border: 1.5px solid rgba(255,255,255,0.4);
+      color: #fff;
+      padding: 0.8rem 1.6rem;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.25);
+    }
+
+    .btn-dark {
+      background: var(--dark);
+      color: #fff;
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .btn-dark:hover {
+      background: #000;
+    }
+
+    .btn-large {
+      padding: 1rem 2.2rem;
+      font-size: 1rem;
+    }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      min-height: 600px;
+    }
+
+    .hero-content {
+      background: var(--warm);
+      padding: 4.5rem 4rem;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1.75rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      opacity: 0.95;
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 28px;
+      height: 1.5px;
+      background: currentColor;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      line-height: 1.05;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .hero-lead {
+      font-size: 1.08rem;
+      line-height: 1.7;
+      opacity: 0.95;
+      max-width: 480px;
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding-top: 0.5rem;
+      font-size: 0.85rem;
+      opacity: 0.85;
+    }
+
+    .hero-meta-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--lime);
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .hero-image {
+      background-image: url('gardener.png');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .hero-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(205, 139, 92, 0.15) 0%, transparent 40%);
+    }
+
+    .hero-image-tag {
+      position: absolute;
+      bottom: 2rem;
+      right: 2rem;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      padding: 0.8rem 1.2rem;
+      border-radius: 10px;
+      font-size: 0.78rem;
+      color: var(--dark);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      z-index: 2;
+    }
+
+    .hero-image-tag-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 0 4px rgba(196, 217, 99, 0.3);
+    }
+
+    /* STATS BAR */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: var(--cream);
+      border-bottom: 1px solid #e8dcc8;
+    }
+
+    .stat {
+      padding: 2.5rem 2rem;
+      text-align: center;
+      border-right: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .stat:last-child {
+      border-right: none;
+    }
+
+    .stat-num {
+      font-family: 'Fraunces', serif;
+      font-size: 3rem;
+      font-weight: 600;
+      color: var(--warm-deep);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.03em;
+    }
+
+    .stat-label {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 0.2rem;
+    }
+
+    .stat-sub {
+      font-size: 0.78rem;
+      color: var(--text-light);
+    }
+
+    /* PROCESS SECTION */
+    .process {
+      padding: 6rem 0;
+    }
+
+    .section-header {
+      max-width: 700px;
+      margin: 0 auto 4rem;
+      text-align: center;
+    }
+
+    .section-header .eyebrow {
+      color: var(--lime-deep);
+      margin-bottom: 1.25rem;
+      justify-content: center;
+    }
+
+    .section-header .eyebrow::before {
+      background: var(--lime-deep);
+    }
+
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-size: 2.6rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--text-medium);
+      line-height: 1.7;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+      position: relative;
+    }
+
+    .process-grid::before {
+      content: '';
+      position: absolute;
+      top: 30px;
+      left: 16.66%;
+      right: 16.66%;
+      height: 1.5px;
+      background: linear-gradient(to right, transparent, var(--sand) 20%, var(--sand) 80%, transparent);
+      z-index: 0;
+    }
+
+    .process-step {
+      text-align: left;
+      position: relative;
+    }
+
+    .step-num {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--lime);
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 8px 20px rgba(196, 217, 99, 0.4);
+    }
+
+    .step-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.01em;
+    }
+
+    .step-desc {
+      font-size: 0.98rem;
+      color: var(--text-medium);
+      line-height: 1.7;
+    }
+
+    /* MAP SECTION */
+    .map-section {
+      padding: 6rem 0;
+      background: var(--cream);
+      border-top: 1px solid #f0e8d8;
+      border-bottom: 1px solid #f0e8d8;
+    }
+
+    .map-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .map-content .eyebrow {
+      color: var(--warm-deep);
+      margin-bottom: 1.25rem;
+    }
+
+    .map-content .eyebrow::before {
+      background: var(--warm-deep);
+    }
+
+    .map-content h2 {
+      font-family: 'Fraunces', serif;
+      font-size: 2.4rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+
+    .map-content p {
+      font-size: 1rem;
+      color: var(--text-medium);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+
+    .country-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-top: 2rem;
+    }
+
+    .country-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.9rem 1.1rem;
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid #e8dcc8;
+    }
+
+    .country-name {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .country-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--lime);
+    }
+
+    .country-projects {
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+
+    .map-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .map-svg {
+      width: 100%;
+      max-width: 480px;
+      height: auto;
+      filter: drop-shadow(0 20px 40px rgba(168, 190, 72, 0.25));
+    }
+
+    .map-pin {
+      animation: pulse 2.5s infinite;
+      transform-origin: center;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.15); }
+    }
+
+    /* BUSINESS SECTION (was Kick Start) */
+    .business {
+      padding: 6rem 0;
+      background: #fff;
+      position: relative;
+    }
+
+    .business-header {
+      max-width: 800px;
+      margin: 0 auto 4rem;
+      text-align: center;
+    }
+
+    .business-header .eyebrow {
+      color: var(--teal);
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .business-header .eyebrow::before {
+      background: var(--teal);
+    }
+
+    .business-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .biz-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 2rem;
+      border: 1px solid #eee;
+      transition: all 0.3s ease;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      cursor: pointer;
+    }
+
+    .biz-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      border-color: var(--teal);
+    }
+
+    .biz-card.featured {
+      background: linear-gradient(165deg, #2E4D86 0%, #1E3A6F 50%, #142850 100%);
+      color: #fff;
+      border: none;
+      box-shadow: 0 20px 50px rgba(30, 58, 111, 0.3);
+    }
+
+    .biz-card.featured:hover {
+      box-shadow: 0 25px 60px rgba(30, 58, 111, 0.42);
+    }
+
+    .biz-tag {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: var(--lime);
+      color: var(--dark);
+      padding: 0.3rem 0.7rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .biz-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: rgba(13, 122, 143, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+    }
+
+    .biz-card.featured .biz-icon {
+      background: rgba(255,255,255,0.18);
+    }
+
+    .biz-amount {
+      font-family: 'Fraunces', serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: var(--teal);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .biz-card.featured .biz-amount {
+      color: var(--lime);
+    }
+
+    .biz-amount span {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-light);
+      margin-left: 0.5rem;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .biz-card.featured .biz-amount span {
+      color: rgba(255,255,255,0.7);
+    }
+
+    .biz-card h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--dark);
+      letter-spacing: -0.01em;
+    }
+
+    .biz-card.featured h3 {
+      color: #fff;
+    }
+
+    .biz-card p {
+      font-size: 0.93rem;
+      color: var(--text-medium);
+      line-height: 1.6;
+      flex-grow: 1;
+    }
+
+    .biz-card.featured p {
+      color: rgba(255,255,255,0.85);
+    }
+
+    .biz-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 0.75rem 0;
+      border-top: 1px solid #f0f0f0;
+    }
+
+    .biz-card.featured .biz-features {
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .biz-features li {
+      font-size: 0.85rem;
+      color: var(--text-medium);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .biz-card.featured .biz-features li {
+      color: rgba(255,255,255,0.9);
+    }
+
+    .biz-features li::before {
+      content: '✓';
+      color: var(--teal);
+      font-weight: 700;
+    }
+
+    .biz-card.featured .biz-features li::before {
+      color: var(--lime);
+    }
+
+    .biz-cta {
+      padding: 0.85rem;
+      background: rgba(13, 122, 143, 0.08);
+      color: var(--teal);
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+
+    .biz-card:hover .biz-cta {
+      background: var(--teal);
+      color: #fff;
+    }
+
+    .biz-card.featured .biz-cta {
+      background: var(--lime);
+      color: var(--dark);
+    }
+
+    .biz-card.featured:hover .biz-cta {
+      background: #fff;
+      color: #1E3A6F;
+    }
+
+    /* TESTIMONIAL STRIP */
+    .testimonial {
+      background-image: linear-gradient(rgba(31, 41, 55, 0.7), rgba(31, 41, 55, 0.85)), url('landscape.jpg');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      padding: 6rem 0;
+    }
+
+    .testimonial-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .testimonial blockquote {
+      font-family: 'Fraunces', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.4;
+      letter-spacing: -0.015em;
+      margin-bottom: 2rem;
+    }
+
+    .testimonial blockquote::before,
+    .testimonial blockquote::after {
+      color: var(--lime);
+      font-size: 2.5rem;
+      line-height: 0;
+      vertical-align: middle;
+    }
+
+    .testimonial blockquote::before { content: '"'; margin-right: 0.5rem; }
+    .testimonial blockquote::after { content: '"'; margin-left: 0.5rem; }
+
+    .testimonial-attr {
+      font-size: 0.95rem;
+      opacity: 0.85;
+      letter-spacing: 0.05em;
+    }
+
+    .testimonial-attr strong {
+      color: var(--lime);
+      font-weight: 600;
+    }
+
+    /* CTA FINAL */
+    .cta-final {
+      padding: 6rem 0;
+      background: var(--dark);
+      color: #fff;
+      text-align: center;
+    }
+
+    .cta-final h2 {
+      font-family: 'Fraunces', serif;
+      font-size: 3rem;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      margin-bottom: 1.25rem;
+      line-height: 1.1;
+    }
+
+    .cta-final p {
+      font-size: 1.1rem;
+      opacity: 0.85;
+      margin-bottom: 2.5rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .btn-outline-light {
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      color: #fff;
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    .btn-outline-light:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* FOOTER */
+    .footer {
+      padding: 3rem 0 2rem;
+      background: var(--dark);
+      color: rgba(255,255,255,0.6);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.85rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--lime);
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="logo">
+      <span class="logo-mark">
+        <svg viewBox="0 0 32 32" width="32" height="32" fill="none">
+          <path d="M16 4 C 9 8, 6 14, 8 20 C 10 24, 14 26, 16 26 C 18 26, 22 24, 24 20 C 26 14, 23 8, 16 4 Z" fill="#C4D963"/>
+          <path d="M16 6 L 16 26" stroke="#1F2937" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M16 14 L 12 12 M 16 18 L 12 16 M 16 14 L 20 12 M 16 18 L 20 16" stroke="#1F2937" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      Sospeso Aurora
+    </div>
+    <nav class="nav-main">
+      <a href="#how">How it works</a>
+      <a href="#map">Projects</a>
+      <a href="#business">Businesses</a>
+      <a href="#">Stories</a>
+      <button class="btn btn-primary">Donate</button>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="eyebrow">Real impact, transparent</span>
+      <h1>Fatima now feeds <em>40 families</em> from her garden</h1>
+      <p class="hero-lead">A $200 donation built her water and seed system. Today she's the food security anchor for an entire refugee community in the Kakuma Refugee Camp.</p>
+      <div class="hero-meta">
+        <span class="hero-meta-dot"></span>
+        <span>Project completed March 2026 · 100% funded by 1 donor</span>
+      </div>
+      <div class="hero-ctas">
+        <button class="btn btn-primary btn-large">Donate now →</button>
+        <button class="btn btn-secondary btn-large">Read her story</button>
+      </div>
+    </div>
+    <div class="hero-image">
+      <div class="hero-image-tag">
+        <span class="hero-image-tag-dot"></span>
+        <span>Live project · Kakuma, Kenya</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <section class="stats-bar">
+    <div class="stat">
+      <div class="stat-num">$84K</div>
+      <div class="stat-label">Distributed directly</div>
+      <div class="stat-sub">To refugee-led projects in 2026</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">2,140</div>
+      <div class="stat-label">Lives transformed</div>
+      <div class="stat-sub">Across 18 communities</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Reaches the ground</div>
+      <div class="stat-sub">2% covers verification & platform</div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process" id="how">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">How it works</span>
+        <h2 class="section-title">Simple. Transparent. Direct.</h2>
+        <p class="section-sub">No middlemen. No admin layers. Refugee communities propose projects, you fund them, everyone tracks the impact.</p>
+      </div>
+      <div class="process-grid">
+        <div class="process-step">
+          <div class="step-num">1</div>
+          <h3 class="step-title">Communities propose</h3>
+          <p class="step-desc">Refugee teams describe water and farming projects suited to their climate, terrain, and immediate needs.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">2</div>
+          <h3 class="step-title">You select & fund</h3>
+          <p class="step-desc">Browse full project budgets, timelines, and success metrics. Pick the projects that resonate with you.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">3</div>
+          <h3 class="step-title">Track real impact</h3>
+          <p class="step-desc">Receive photo updates and verified metrics showing exactly how your donation built lasting resilience.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAP SECTION -->
+  <section class="map-section" id="map">
+    <div class="container">
+      <div class="map-grid">
+        <div class="map-content">
+          <span class="eyebrow">Where we work</span>
+          <h2>30 active projects across East Africa</h2>
+          <p>Every project on our platform is verified, documented, and tracked from proposal to completion. Start by exploring active needs.</p>
+          <div class="country-list">
+            <div class="country-item">
+              <div class="country-name"><span class="country-dot"></span> Kenya</div>
+              <div class="country-projects">142 projects · $312K raised</div>
+            </div>
+            <div class="country-item">
+              <div class="country-name"><span class="country-dot" style="background: var(--warm)"></span> Uganda</div>
+              <div class="country-projects">63 projects · $246K raised</div>
+            </div>
+            <div class="country-item">
+              <div class="country-name"><span class="country-dot" style="background: var(--teal)"></span> South Sudan</div>
+              <div class="country-projects">80 projects · $289K raised</div>
+            </div>
+          </div>
+        </div>
+        <div class="map-visual">
+          <svg class="map-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+            <!-- Kenya outline (stylized) -->
+            <path d="M 80 180 
+                     L 120 130 
+                     L 180 110 
+                     L 240 100 
+                     L 310 95 
+                     L 380 110 
+                     L 420 150 
+                     L 430 220 
+                     L 440 280 
+                     L 425 340 
+                     L 400 380 
+                     L 360 410 
+                     L 310 420 
+                     L 260 415 
+                     L 220 405 
+                     L 180 380 
+                     L 140 350 
+                     L 110 310 
+                     L 90 260 
+                     L 80 220 Z" 
+                  fill="#C4D963" 
+                  stroke="#fff" 
+                  stroke-width="2.5" 
+                  stroke-linejoin="round"/>
+            
+            <!-- Internal boundaries -->
+            <g stroke="#fff" stroke-width="1.2" fill="none" opacity="0.7">
+              <path d="M 180 110 L 200 200 L 230 250 L 200 320 L 180 380"/>
+              <path d="M 310 95 L 300 180 L 320 260 L 340 340 L 360 410"/>
+              <path d="M 90 260 L 200 250 L 320 260 L 440 280"/>
+              <path d="M 240 100 L 250 210 L 230 250"/>
+              <path d="M 380 110 L 360 200 L 320 260"/>
+            </g>
+
+            <!-- Project pins -->
+            <g>
+              <!-- Pin 1 -->
+              <circle cx="180" cy="200" r="14" fill="#CD8B5C" opacity="0.3" class="map-pin"/>
+              <circle cx="180" cy="200" r="7" fill="#CD8B5C"/>
+              <circle cx="180" cy="200" r="3" fill="#fff"/>
+              
+              <!-- Pin 2 -->
+              <circle cx="280" cy="180" r="14" fill="#1F2937" opacity="0.25" class="map-pin"/>
+              <circle cx="280" cy="180" r="7" fill="#1F2937"/>
+              <circle cx="280" cy="180" r="3" fill="#fff"/>
+              
+              <!-- Pin 3 -->
+              <circle cx="350" cy="260" r="14" fill="#0D7A8F" opacity="0.3" class="map-pin"/>
+              <circle cx="350" cy="260" r="7" fill="#0D7A8F"/>
+              <circle cx="350" cy="260" r="3" fill="#fff"/>
+
+              <!-- Pin 4 -->
+              <circle cx="240" cy="320" r="14" fill="#CD8B5C" opacity="0.3" class="map-pin"/>
+              <circle cx="240" cy="320" r="7" fill="#CD8B5C"/>
+              <circle cx="240" cy="320" r="3" fill="#fff"/>
+
+              <!-- Pin 5 -->
+              <circle cx="380" cy="350" r="14" fill="#1F2937" opacity="0.25" class="map-pin"/>
+              <circle cx="380" cy="350" r="7" fill="#1F2937"/>
+              <circle cx="380" cy="350" r="3" fill="#fff"/>
+            </g>
+
+            <!-- Labels -->
+            <g font-family="Inter, sans-serif" font-size="11" font-weight="600">
+              <text x="155" y="195" fill="#1F2937" text-anchor="end">Kakuma</text>
+              <text x="295" y="175" fill="#1F2937">Nairobi</text>
+              <text x="365" y="255" fill="#1F2937">Dadaab</text>
+              <text x="215" y="325" fill="#1F2937" text-anchor="end">Juba</text>
+              <text x="395" y="355" fill="#1F2937">Kabobi</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUSINESS SECTION -->
+  <section class="business" id="business">
+    <div class="container">
+      <div class="business-header">
+        <span class="eyebrow">Beyond food security</span>
+        <h2 class="section-title">Kick start a refugee business</h2>
+        <p class="section-sub">Water and Food security opens doors. Help refugees scale their gardens and skills into thriving, income-generating businesses through targeted funding.</p>
+      </div>
+      <div class="business-cards">
+        <!-- Card 1 -->
+        <div class="biz-card">
+          <div class="biz-icon">
+</div>
+          <div class="biz-amount">$25 starting</div>
+          <h3>Solo Entrepreneur</h3>
+          <p>Seed funding for a single refugee to start a high-value crop garden.</p>
+          <ul class="biz-features">
+            <li>Starter inventory & tools</li>
+            <li>Photos showing your impact</li>
+            <li>Monthly mentorship</li>
+          </ul>
+          <div class="biz-cta">Fund a starter →</div>
+        </div>
+        <!-- Card 2: Featured -->
+        <div class="biz-card featured">
+          <span class="biz-tag">MOST POPULAR</span>
+          <div class="biz-icon">👥</div>
+          <div class="biz-amount">$50 complete</div>
+          <h3>Farm Cooperative</h3>
+          <p>Help a women-led cooperative formalise, scale, and access regional markets.</p>
+          <ul class="biz-features">
+            <li>Equipment & infrastructure</li>
+            <li>Legal registration support</li>
+            <li>Market access network</li>
+            <li>6 months of training</li>
+          </ul>
+          <div class="biz-cta">Fund a cooperative →</div>
+        </div>
+        <!-- Card 3 -->
+        <div class="biz-card">
+          <div class="biz-icon">🏪</div>
+          <div class="biz-amount">$200 full launch</div>
+          <h3>Community Hub</h3>
+          <p>Build a market hub serving multiple businesses, with storage, transport, and trade.</p>
+          <ul class="biz-features">
+            <li>Physical infrastructure</li>
+            <li>Logistics & distribution</li>
+            <li>Multi-business support</li>
+          </ul>
+          <div class="biz-cta">Build a hub →</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="testimonial">
+    <div class="container">
+      <div class="testimonial-content">
+        <blockquote>
+          With Sospeso Aurora, our entire community has hope. My children will never go hungry again, and now I can teach my neighbors what I've learned.
+        </blockquote>
+        <div class="testimonial-attr">FATIMA OKELLO · Refugee farmer, Kakuma Camp</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="cta-final">
+    <div class="container">
+      <h2>Your $25 plants a garden and changes a life, 
+then a community
+</h2>
+      <p>Pick a verified project, fund it directly, and watch your impact unfold. 100% transparent from start to harvest.</p>
+      <div class="cta-buttons">
+        <button class="btn btn-primary btn-large">Browse all projects</button>
+        <button class="btn btn-outline-light btn-large">How it works</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>© 2026 Sospeso Aurora · Refugee resilience platform</div>
+        <div class="footer-links">
+          <a href="#">About</a>
+          <a href="#">Transparency Report</a>
+          <a href="#">Partner with us</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
