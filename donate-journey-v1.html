@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track your impact — Nadia's Garden · Sospeso Aurora</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style id="donate-base">
+/* ============================================================
+   Sospeso Aurora — shared base for donation-progress pages
+   Tokens, reset, header, footer, buttons, photo placeholders
+   ============================================================ */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --lime: #C4D963;
+  --lime-deep: #A8BE48;
+  --dark: #1F2937;
+  --warm: #CD8B5C;
+  --warm-deep: #B57649;
+  --sand: #E8DCC8;
+  --cream: #F5EFE3;
+  --teal: #0D7A8F;
+  --teal-deep: #0A6173;
+  --text-dark: #1a1a1a;
+  --text-light: #6B7280;
+  --text-medium: #4B5563;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: #fff;
+  color: var(--text-dark);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.serif { font-family: 'Fraunces', Georgia, serif; letter-spacing: -0.02em; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+/* ---------- HEADER ---------- */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 2rem;
+  background: rgba(255,255,255,0.9);
+  border-bottom: 1px solid #f0f0f0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--dark);
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+
+.logo-mark { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; }
+
+.nav-main { display: flex; gap: 2.5rem; align-items: center; }
+
+.nav-main a {
+  text-decoration: none;
+  color: var(--text-medium);
+  font-size: 0.92rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.nav-main a:hover { color: var(--dark); }
+.nav-main a.active { color: var(--dark); font-weight: 600; }
+
+/* ---------- BUTTONS ---------- */
+.btn {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 600;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--lime);
+  color: var(--dark);
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+.btn-primary:hover { background: var(--lime-deep); transform: translateY(-1px); }
+
+.btn-dark {
+  background: var(--dark);
+  color: #fff;
+  padding: 0.9rem 2rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+.btn-dark:hover { background: #000; }
+
+.btn-outline {
+  background: transparent;
+  border: 1.5px solid var(--sand);
+  color: var(--dark);
+  padding: 0.9rem 1.8rem;
+  border-radius: 8px;
+  font-weight: 600;
+}
+.btn-outline:hover { border-color: var(--dark); }
+
+.btn-outline-light {
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.3);
+  color: #fff;
+  padding: 0.9rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+}
+.btn-outline-light:hover { background: rgba(255,255,255,0.1); }
+
+.btn-large { padding: 1rem 2.2rem; font-size: 1rem; }
+.btn-block { width: 100%; }
+
+/* ---------- EYEBROW ---------- */
+.eyebrow {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.eyebrow::before { content: ''; width: 28px; height: 1.5px; background: currentColor; }
+
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-size: 2.6rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--dark);
+}
+.section-sub { font-size: 1.05rem; color: var(--text-medium); line-height: 1.7; }
+
+/* ---------- PHOTO PLACEHOLDER ----------
+   Evokes a photo taken on-site by the refugee team.
+   Drop a real image in by setting background-image on .photo. */
+.photo {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--cream);
+  background-image:
+    repeating-linear-gradient(135deg,
+      rgba(31,41,55,0.045) 0px,
+      rgba(31,41,55,0.045) 1px,
+      transparent 1px,
+      transparent 11px);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  border-radius: 12px;
+}
+.photo.warm { background-color: #efe2d2; }
+.photo.lime { background-color: #eef2da; }
+.photo.teal { background-color: #dcebee; }
+
+.photo-tag {
+  font-family: 'SFMono-Regular', ui-monospace, 'Menlo', monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-medium);
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(4px);
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  margin: 0.7rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.photo-tag::before { content: '◉'; color: var(--warm); font-size: 0.7rem; }
+
+/* status chips */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.32rem 0.7rem;
+  border-radius: 999px;
+}
+.chip::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.chip-done { background: rgba(13,122,143,0.12); color: var(--teal-deep); }
+.chip-live { background: rgba(168,190,72,0.22); color: #6f7d24; }
+.chip-live::before { animation: pulse 1.6s ease-in-out infinite; }
+.chip-soon { background: #ece6db; color: var(--text-light); }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.7); }
+}
+
+/* ---------- FOOTER ---------- */
+.footer {
+  padding: 3rem 0 2rem;
+  background: var(--dark);
+  color: rgba(255,255,255,0.6);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  font-size: 0.85rem;
+}
+.footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.footer-links { display: flex; gap: 2rem; flex-wrap: wrap; }
+.footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; }
+.footer-links a:hover { color: var(--lime); }
+
+/* small helper to switch pages while comparing */
+.variant-switch {
+  position: fixed;
+  bottom: 1.25rem; left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  display: flex;
+  gap: 0.25rem;
+  background: var(--dark);
+  padding: 0.35rem;
+  border-radius: 999px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+.variant-switch a {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  transition: all 0.18s;
+}
+.variant-switch a:hover { color: #fff; }
+.variant-switch a.active { background: var(--lime); color: var(--dark); }
+
+  </style>
+  <style>
+    /* ---------- PROJECT HERO ---------- */
+    .proj-hero { padding: 2.5rem 0 3.5rem; }
+    .breadcrumb {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.85rem; color: var(--text-light); margin-bottom: 1.75rem;
+    }
+    .breadcrumb a { color: var(--text-light); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--dark); }
+    .breadcrumb span { opacity: 0.5; }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 0.78fr;
+      gap: 3rem;
+      align-items: stretch;
+    }
+
+    .hero-photo {
+      min-height: 420px;
+      border-radius: 18px;
+    }
+    .hero-photo .photo-tag { margin: 1.1rem; font-size: 0.72rem; }
+
+    .hero-info { display: flex; flex-direction: column; }
+    .hero-info .eyebrow { color: var(--warm-deep); margin-bottom: 1.1rem; }
+    .hero-info h1 {
+      font-family: 'Fraunces', serif;
+      font-size: 2.9rem;
+      font-weight: 600;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      color: var(--dark);
+      margin-bottom: 0.9rem;
+    }
+    .hero-loc { display: flex; align-items: center; gap: 0.5rem; color: var(--text-medium); font-size: 0.95rem; margin-bottom: 1.6rem; }
+    .hero-loc::before { content: '📍'; }
+
+    /* funding card */
+    .fund-card {
+      margin-top: auto;
+      background: var(--cream);
+      border: 1px solid #ece2d0;
+      border-radius: 16px;
+      padding: 1.5rem 1.6rem;
+    }
+    .fund-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem; }
+    .fund-raised { font-family: 'Fraunces', serif; font-size: 1.9rem; font-weight: 700; color: var(--dark); }
+    .fund-raised span { font-size: 1rem; font-weight: 500; color: var(--text-light); font-family: 'Inter', sans-serif; }
+    .fund-pct { font-weight: 700; color: var(--teal-deep); font-size: 0.95rem; }
+    .progress { height: 10px; background: #e2d6c2; border-radius: 999px; overflow: hidden; }
+    .progress > i { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--lime-deep), var(--lime)); }
+    .fund-meta { display: flex; gap: 1.5rem; margin: 1.1rem 0 1.3rem; font-size: 0.85rem; color: var(--text-medium); }
+    .fund-meta b { color: var(--dark); }
+
+    /* ---------- JOURNEY INTRO ---------- */
+    .journey { padding: 4.5rem 0 1rem; background: #fff; }
+    .journey-head { max-width: 720px; margin: 0 auto 3.5rem; text-align: center; }
+    .journey-head .eyebrow { color: var(--lime-deep); justify-content: center; margin-bottom: 1.1rem; }
+    .journey-head .eyebrow::before { background: var(--lime-deep); }
+    .journey-head p { margin-top: 0.9rem; }
+
+    /* ---------- TIMELINE ---------- */
+    .timeline { position: relative; max-width: 980px; margin: 0 auto; padding-bottom: 4rem; }
+    .timeline::before {
+      content: ''; position: absolute; top: 8px; bottom: 90px;
+      left: 50%; transform: translateX(-50%);
+      width: 2px; background: var(--sand);
+    }
+    .tl-item {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      margin-bottom: 3.5rem;
+      align-items: center;
+    }
+    .tl-node {
+      position: absolute; left: 50%; top: 0; transform: translate(-50%, 0);
+      width: 46px; height: 46px; border-radius: 50%;
+      background: #fff; border: 2px solid var(--sand);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.1rem; color: var(--text-light);
+      z-index: 2;
+    }
+    .tl-item.done .tl-node { background: var(--teal); border-color: var(--teal); color: #fff; box-shadow: 0 6px 18px rgba(13,122,143,0.3); }
+    .tl-item.live .tl-node { background: var(--lime); border-color: var(--lime); color: var(--dark); box-shadow: 0 6px 20px rgba(196,217,99,0.55); }
+
+    .tl-photo { height: 240px; }
+    .tl-item:nth-child(even) .tl-photo { order: 2; }
+    .tl-item:nth-child(even) .tl-text { order: 1; text-align: right; }
+    .tl-item:nth-child(even) .tl-text .tl-chips { justify-content: flex-end; }
+
+    .tl-chips { display: flex; gap: 0.6rem; align-items: center; margin-bottom: 0.9rem; }
+    .tl-date { font-size: 0.8rem; color: var(--text-light); font-weight: 500; }
+    .tl-text h3 { font-family: 'Fraunces', serif; font-size: 1.55rem; font-weight: 600; color: var(--dark); margin-bottom: 0.6rem; letter-spacing: -0.01em; }
+    .tl-text p { color: var(--text-medium); font-size: 0.97rem; line-height: 1.7; margin-bottom: 1rem; }
+    .tl-release {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.82rem; font-weight: 600; color: var(--teal-deep);
+      background: rgba(13,122,143,0.08); padding: 0.45rem 0.8rem; border-radius: 8px;
+    }
+    .tl-release.pending { color: var(--text-light); background: #f1ece2; }
+    .tl-release::before { content: '€'; font-weight: 800; }
+
+    /* ---------- WHERE MONEY GOES ---------- */
+    .ledger { padding: 5rem 0; background: var(--cream); border-top: 1px solid #f0e8d8; border-bottom: 1px solid #f0e8d8; }
+    .ledger-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 4rem; align-items: center; }
+    .ledger-head .eyebrow { color: var(--warm-deep); margin-bottom: 1.1rem; }
+    .ledger-head h2 { font-family: 'Fraunces', serif; font-size: 2.4rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1.12; color: var(--dark); margin-bottom: 1rem; }
+    .ledger-head p { color: var(--text-medium); line-height: 1.7; }
+    .ledger-total { margin-top: 1.6rem; font-family: 'Fraunces', serif; }
+    .ledger-total b { font-size: 2.6rem; color: var(--dark); }
+    .ledger-total span { color: var(--text-light); font-family: 'Inter', sans-serif; font-size: 0.95rem; }
+
+    .ledger-list { display: flex; flex-direction: column; gap: 1.4rem; }
+    .li-row { }
+    .li-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; }
+    .li-name { font-weight: 600; color: var(--dark); font-size: 0.98rem; }
+    .li-name small { display: block; font-weight: 400; color: var(--text-light); font-size: 0.8rem; margin-top: 1px; }
+    .li-amt { font-family: 'Fraunces', serif; font-weight: 700; color: var(--dark); font-size: 1.05rem; }
+    .li-bar { height: 8px; background: #e2d6c2; border-radius: 999px; overflow: hidden; }
+    .li-bar > i { display: block; height: 100%; border-radius: 999px; }
+
+    /* ---------- TRUST STRIP ---------- */
+    .trust { padding: 4.5rem 0; text-align: center; }
+    .trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; max-width: 980px; margin: 2.5rem auto 0; }
+    .trust-item { text-align: left; padding: 1.6rem; border: 1px solid #eee; border-radius: 14px; }
+    .trust-item .ic { font-size: 1.4rem; margin-bottom: 0.8rem; }
+    .trust-item h4 { font-family: 'Fraunces', serif; font-size: 1.15rem; font-weight: 600; color: var(--dark); margin-bottom: 0.4rem; }
+    .trust-item p { font-size: 0.9rem; color: var(--text-medium); line-height: 1.6; }
+
+    /* ---------- FINAL CTA ---------- */
+    .cta-final { padding: 5.5rem 0; background: var(--dark); color: #fff; text-align: center; }
+    .cta-final h2 { font-family: 'Fraunces', serif; font-size: 2.7rem; font-weight: 600; letter-spacing: -0.025em; margin-bottom: 1rem; line-height: 1.12; max-width: 760px; margin-left: auto; margin-right: auto; }
+    .cta-final p { font-size: 1.05rem; opacity: 0.82; margin-bottom: 2.3rem; max-width: 560px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    @media (max-width: 880px) {
+      .hero-grid, .ledger-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .trust-grid { grid-template-columns: 1fr; }
+      .timeline::before { left: 23px; }
+      .tl-item { grid-template-columns: 1fr; gap: 1.2rem; padding-left: 60px; }
+      .tl-node { left: 23px; }
+      .tl-item:nth-child(even) .tl-photo,
+      .tl-item:nth-child(even) .tl-text { order: initial; text-align: left; }
+      .tl-item:nth-child(even) .tl-text .tl-chips { justify-content: flex-start; }
+      .nav-main a:not(.btn) { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="site-header">
+    <a class="logo" href="homepage-v2.html">
+      <span class="logo-mark">
+        <svg viewBox="0 0 32 32" width="32" height="32" fill="none">
+          <path d="M16 4 C 9 8, 6 14, 8 20 C 10 24, 14 26, 16 26 C 18 26, 22 24, 24 20 C 26 14, 23 8, 16 4 Z" fill="#C4D963"/>
+          <path d="M16 6 L 16 26" stroke="#1F2937" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M16 14 L 12 12 M 16 18 L 12 16 M 16 14 L 20 12 M 16 18 L 20 16" stroke="#1F2937" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      Sospeso Aurora
+    </a>
+    <nav class="nav-main">
+      <a href="homepage-v2.html#how">How it works</a>
+      <a href="homepage-v2.html#map">Projects</a>
+      <a href="#" class="active">Track impact</a>
+      <a href="#fund" class="btn btn-primary">Donate</a>
+    </nav>
+  </header>
+
+  <!-- PROJECT HERO -->
+  <section class="proj-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="homepage-v2.html#map">Projects</a><span>›</span>
+        <a href="homepage-v2.html#map">Kakuma, Kenya</a><span>›</span>
+        Nadia's half-acre garden
+      </div>
+      <div class="hero-grid">
+        <div class="photo warm hero-photo" style="background-image:url('assets/nadia-garden-hero.jpg')">
+          <span class="photo-tag">Posted by Nadia · day 31</span>
+        </div>
+        <div class="hero-info">
+          <span class="eyebrow">Funding in progress</span>
+          <h1>Nadia's half-acre drip garden</h1>
+          <div class="hero-loc">Kakuma Refugee Camp, Kenya · Started 4 May 2026</div>
+          <div class="fund-card" id="fund">
+            <div class="fund-row">
+              <div class="fund-raised">€42.63 <span>of €60.90 goal</span></div>
+              <div class="fund-pct">70%</div>
+            </div>
+            <div class="progress"><i style="width:70%"></i></div>
+            <div class="fund-meta">
+              <div><b>7</b> of 10 units funded</div>
+              <div><b>7</b> donors</div>
+              <div><b>3</b> of 5 stages complete</div>
+            </div>
+            <a href="#" class="btn btn-dark btn-block btn-large">Fund the next unit · €6.09 →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOURNEY -->
+  <section class="journey">
+    <div class="container">
+      <div class="journey-head">
+        <span class="eyebrow">The journey, documented</span>
+        <h2 class="section-title">Every stage, photographed by Nadia herself</h2>
+        <p class="section-sub">No stock photos, no reports written for you. Nadia uploads a picture at each milestone from her own phone. Funds for the next stage release only once the previous one is verified.</p>
+      </div>
+
+      <div class="timeline">
+        <!-- Stage 1 -->
+        <div class="tl-item done">
+          <div class="tl-node">1</div>
+          <div class="photo lime tl-photo" style="background-image:url('assets/site-survey.jpg')"><span class="photo-tag">Site survey · 4 May</span></div>
+          <div class="tl-text">
+            <div class="tl-chips"><span class="chip chip-done">Verified</span><span class="tl-date">4 May 2026</span></div>
+            <h3>Site survey &amp; soil test</h3>
+            <p>Nadia photographs the bare plot and the soil-test strip. Our local field officer confirms the location, water access, and that the land is hers to farm.</p>
+            <span class="tl-release">9.80 released for soil prep &amp; tools</span>
+          </div>
+        </div>
+        <!-- Stage 2 -->
+        <div class="tl-item done">
+          <div class="tl-node">2</div>
+          <div class="photo warm tl-photo"><span class="photo-tag">Delivery day · 12 May</span></div>
+          <div class="tl-text">
+            <div class="tl-chips"><span class="chip chip-done">Verified</span><span class="tl-date">12 May 2026</span></div>
+            <h3>Materials delivered</h3>
+            <p>609 plastic-bottle drip units, seed packets, and hand tools arrive. Nadia photographs the delivery against the project manifest so every item is accounted for.</p>
+            <span class="tl-release">24.40 released for the drip irrigation kit</span>
+          </div>
+        </div>
+        <!-- Stage 3 -->
+        <div class="tl-item live">
+          <div class="tl-node">3</div>
+          <div class="photo teal tl-photo"><span class="photo-tag">In progress · 2 days ago</span></div>
+          <div class="tl-text">
+            <div class="tl-chips"><span class="chip chip-live">Happening now</span><span class="tl-date">Updated 31 May 2026</span></div>
+            <h3>Building the drip system</h3>
+            <p>The bottle-drip network is going into the ground row by row. Nadia is posting progress photos as each bed is connected — you're watching this happen in near real time.</p>
+            <span class="tl-release">12.10 releases when planting is verified</span>
+          </div>
+        </div>
+        <!-- Stage 4 -->
+        <div class="tl-item soon">
+          <div class="tl-node">4</div>
+          <div class="photo lime tl-photo" style="background-image:url('assets/first-planting.jpg')"><span class="photo-tag">First planting · seedlings in</span></div>
+          <div class="tl-text">
+            <div class="tl-chips"><span class="chip chip-soon">Upcoming</span><span class="tl-date">Est. mid-June</span></div>
+            <h3>First planting</h3>
+            <p>Seedlings go into the prepared beds. Nadia will photograph the planted rows and log which crops went where — kale, tomato, and amaranth for fast nutrition.</p>
+            <span class="tl-release pending">8.60 reserved for the local trainer</span>
+          </div>
+        </div>
+        <!-- Stage 5 -->
+        <div class="tl-item soon">
+          <div class="tl-node">5</div>
+          <div class="photo warm tl-photo"><span class="photo-tag">Awaiting upload</span></div>
+          <div class="tl-text">
+            <div class="tl-chips"><span class="chip chip-soon">Upcoming</span><span class="tl-date">Est. late July</span></div>
+            <h3>First harvest</h3>
+            <p>The proof: a photo of Nadia and the first basket of produce. The project closes only when this final milestone is uploaded and verified by the community committee.</p>
+            <span class="tl-release pending">Project marked complete &amp; archived</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHERE MONEY GOES -->
+  <section class="ledger">
+    <div class="container">
+      <div class="ledger-grid">
+        <div class="ledger-head">
+          <span class="eyebrow">Where your money goes</span>
+          <h2>Every euro, itemised</h2>
+          <p>Sospeso Aurora takes no cut for fundraising. The full €60.90 is the real, costed budget for Nadia's garden — released stage by stage, never up front.</p>
+          <div class="ledger-total"><b>€60.90</b> <span>· total project budget</span></div>
+        </div>
+        <div class="ledger-list">
+          <div class="li-row">
+            <div class="li-top"><div class="li-name">Drip irrigation kit <small>609 plastic-bottle units</small></div><div class="li-amt">€24.40</div></div>
+            <div class="li-bar"><i style="width:100%; background:var(--teal)"></i></div>
+          </div>
+          <div class="li-row">
+            <div class="li-top"><div class="li-name">Seeds &amp; seedlings <small>kale, tomato, amaranth</small></div><div class="li-amt">€12.10</div></div>
+            <div class="li-bar"><i style="width:50%; background:var(--lime-deep)"></i></div>
+          </div>
+          <div class="li-row">
+            <div class="li-top"><div class="li-name">Soil prep &amp; hand tools <small>compost, hoe, watering cans</small></div><div class="li-amt">€9.80</div></div>
+            <div class="li-bar"><i style="width:40%; background:var(--warm)"></i></div>
+          </div>
+          <div class="li-row">
+            <div class="li-top"><div class="li-name">Local trainer <small>2 on-site coaching sessions</small></div><div class="li-amt">€8.60</div></div>
+            <div class="li-bar"><i style="width:35%; background:var(--warm-deep)"></i></div>
+          </div>
+          <div class="li-row">
+            <div class="li-top"><div class="li-name">Verification &amp; logistics <small>field-officer visits, transfers</small></div><div class="li-amt">€6.00</div></div>
+            <div class="li-bar"><i style="width:25%; background:#9aa0a6"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <section class="trust">
+    <div class="container">
+      <span class="eyebrow" style="color:var(--lime-deep); justify-content:center;">Why you can trust it</span>
+      <h2 class="section-title" style="margin-top:1rem;">Transparency isn't a promise — it's the mechanism</h2>
+      <div class="trust-grid">
+        <div class="trust-item">
+          <div class="ic">📷</div>
+          <h4>Photos at the source</h4>
+          <p>Every update is uploaded by the farmer from the field, time-stamped and tied to a specific milestone — not curated by us.</p>
+        </div>
+        <div class="trust-item">
+          <div class="ic">🔒</div>
+          <h4>Funds held in escrow</h4>
+          <p>Money for each stage is released only after a field officer verifies the previous stage's photo evidence.</p>
+        </div>
+        <div class="trust-item">
+          <div class="ic">🧾</div>
+          <h4>Open ledger</h4>
+          <p>The full costed budget is public from day one. You always see exactly what your contribution paid for.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="cta-final">
+    <div class="container">
+      <h2>One unit funds 87 drip points. Watch the next photo arrive because of you.</h2>
+      <p>Nadia's garden is 70% funded. Back the next stage and you'll get a notification the moment her next milestone photo goes live.</p>
+      <div class="cta-buttons">
+        <a href="#fund" class="btn btn-primary btn-large">Fund a unit · €6.09 →</a>
+        <a href="homepage-v2.html#map" class="btn btn-outline-light btn-large">Explore other projects</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>© 2026 Sospeso Aurora · Refugee resilience platform</div>
+        <div class="footer-links">
+          <a href="#">About</a>
+          <a href="#">Transparency Report</a>
+          <a href="#">Partner with us</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- compare switch -->
+  <div class="variant-switch">
+    <a href="donate-journey-v1.html" class="active">Variation 1 · Journey</a>
+    <a href="donate-journey-v2.html">Variation 2 · Live tracker</a>
+  </div>
+</body>
+</html>
