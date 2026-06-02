@@ -413,6 +413,33 @@ body {
       .tl-item:nth-child(even) .tl-text .tl-chips { justify-content: flex-start; }
       .nav-main a:not(.btn) { display: none; }
     }
+
+    /* Scroll animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .tl-item {
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    .tl-item.scroll-reveal {
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    .tl-item:nth-child(1) { animation-delay: 0s; }
+    .tl-item:nth-child(2) { animation-delay: 0.15s; }
+    .tl-item:nth-child(3) { animation-delay: 0.3s; }
+    .tl-item:nth-child(4) { animation-delay: 0.45s; }
+    .tl-item:nth-child(5) { animation-delay: 0.6s; }
   </style>
 </head>
 <body>
@@ -627,5 +654,27 @@ body {
     </div>
   </footer>
 
+  <script>
+    // Scroll reveal animation for timeline items
+    const timelineItems = document.querySelectorAll('.tl-item');
+
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('scroll-reveal');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    timelineItems.forEach(item => {
+      observer.observe(item);
+    });
+  </script>
 </body>
 </html>
